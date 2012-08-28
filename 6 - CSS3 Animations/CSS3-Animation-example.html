@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSS3-Transition and Animation</title>
+  <meta name="author" content="Gianluca Guarini">
+  <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
+   <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+ 
+  <!--
+  *
+  * This page was made just for didactic purpose by Gianluca Guarini
+  * It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
+  *
+  *
+  -->
+  <style>
+ 
+  a {
+    display: block;
+    width:50px;
+    height:50px;
+    cursor:pointer;
+    margin:-25px 0 0 -25px;
+    
+    position:absolute;
+    top:10%;
+    left:50%;
+    border-radius:50px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    animation: customAnimation 5s ease-in-out 0s infinite alternate;
+    -moz-animation: customAnimation 5s ease-in-out 0s infinite alternate; /* Firefox */
+    -webkit-animation: customAnimation 5s ease-in-out 0s infinite alternate; /* Safari and Chrome */
+    -o-animation: customAnimation 5s ease-in-out 0s infinite alternate; /* Opera */
+    -ms-animation: customAnimation 5s ease-in-out 0s infinite alternate; /* IE10 */
+
+  }
+  a:hover {
+    animation-play-state:paused;
+    -moz-animation-play-state:paused; /* Firefox*/
+    -webkit-animation-play-state:paused; /* Safari and Chrome */
+    -o-animation-play-state:paused; /* Opera */ 
+  }
+  /*animation keyframes*/
+  @keyframes customAnimation
+  {
+    0%   {
+      background:orange;
+      top:10%;
+      left:50%;
+    }
+    25%  {
+      top:50%;
+      left:90%;
+      background: red;
+    }
+    50%  {
+      top:90%;
+      left:50%;
+      background: pink;
+    }
+    75%  {
+      left:10%;
+      top:50%;
+      background: violet;
+    }
+    100% {
+      left:50%;
+      top:10%;
+      background: yellow;
+    }
+  }
+
+  @-moz-keyframes customAnimation /* Firefox */
+  {
+    0%   {
+      background:orange;
+      top:10%;
+      left:50%;
+    }
+    25%  {
+      top:50%;
+      left:90%;
+      background: red;
+    }
+    50%  {
+      top:90%;
+      left:50%;
+      background: pink;
+    }
+    75%  {
+      left:10%;
+      top:50%;
+      background: violet;
+    }
+    100% {
+      left:50%;
+      top:10%;
+      background: yellow;
+    }
+  }
+
+  @-webkit-keyframes customAnimation /* Safari and Chrome */
+  {
+    0%   {
+      background:orange;
+      top:10%;
+      left:50%;
+    }
+    25%  {
+      top:50%;
+      left:90%;
+      background: red;
+    }
+    50%  {
+      top:90%;
+      left:50%;
+      background: pink;
+    }
+    75%  {
+      left:10%;
+      top:50%;
+      background: violet;
+    }
+    100% {
+      left:50%;
+      top:10%;
+      background: yellow;
+    }
+  } 
+
+  @-o-keyframes customAnimation /* Opera */
+  {
+    0%   {
+      background:orange;
+      top:10%;
+      left:50%;
+    }
+    25%  {
+      top:50%;
+      left:90%;
+      background: red;
+    }
+    50%  {
+      top:90%;
+      left:50%;
+      background: pink;
+    }
+    75%  {
+      left:10%;
+      top:50%;
+      background: violet;
+    }
+    100% {
+      left:50%;
+      top:10%;
+      background: yellow;
+    }
+  } 
+
+  @-ms-keyframes customAnimation /* IE10 */
+  {
+    0%   {
+      background:orange;
+      top:10%;
+      left:50%;
+    }
+    25%  {
+      top:50%;
+      left:90%;
+      background: red;
+    }
+    50%  {
+      top:90%;
+      left:50%;
+      background: pink;
+    }
+    75%  {
+      left:10%;
+      top:50%;
+      background: violet;
+    }
+    100% {
+      left:50%;
+      top:10%;
+      background: yellow;
+    }
+  }
+
+  </style>
+</head>
+
+<body>
+<div class="container-fluid">
+  <h1>Animation example</h1>
+
+  <a></a>
+</div>
+  <!-- these scripts are not needed, it is used just to highlight the code in the page -->
+  <script src="../assets/js/prettify.js"></script>
+  <script>window.prettyPrint && prettyPrint()</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Drag and Drop API</title>
+  <meta name="author" content="Gianluca Guarini">
+  <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
+  <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+
+  <!--
+  *
+  * This page was made just for didactic purpose by Gianluca Guarini
+  * It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
+  *
+  *
+  -->
+  <style>
+  body {
+    margin:5%;
+  }
+  .wrapper, .dropper {
+    width:44%;
+    margin:0 5% 5% 0;
+    min-height:120px;
+    float:left;
+    background:#fff;
+    border-radius:10px;
+  }
+  .dropper {
+    border:3px dashed #3d3d3d;
+  }
+  .wrapper a, .dropper a{
+    width:100px;
+    height:100px;
+    margin:10px;
+    background:green;
+    display:block;
+    float:left;
+    -webkit-transition: 0.6s ease-in-out;
+     -moz-transition: 0.6s ease-in-out;
+      -ms-transition: 0.6s ease-in-out;
+       -o-transition: 0.6s ease-in-out;
+          transition: 0.6s ease-in-out;
+    cursor:move;
+    -webkit-user-drag: element;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .dropper a{ 
+    background:yellow;
+  }
+  a.dragging {
+    background:lime;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>Drag and Drop</h1>
+    <p>
+      Drag the green blocks from the left wrapper into the right container
+    </p>
+    <div class="wrapper">
+      <a id="box1" draggable></a>
+      <a id="box2" draggable></a>
+      <a id="box3" draggable></a>
+      <a id="box4" draggable></a>
+    </div>
+    <div class="dropper"></div>
+    <div class="clearfix"></div>
+    <pre class="prettyprint linenums">
+  // detecting the elements inside the DOM
+  var blocks = document.querySelectorAll(".wrapper a"),
+      wrapper = document.querySelector(".wrapper")
+      dropper = document.querySelector(".dropper");
+
+  // events attached to the blocks
+  var onDragStart = function (e) {
+    // setting the drag operation
+    e.dataTransfer.effectAllowed = 'move'; // here we are setting that the drag data will be moved
+    e.dataTransfer.setData("Text", this.id); // the drag data is just the id of the element
+    //e.dataTransfer.setDragImage(imageObject,0,0); // you can set also an image placeholder during the drag
+
+    // adding the dragging class to the current block
+    this.className = "dragging";
+  };
+  var onDragEnd = function (e) {
+    // removing the class of the block dragged
+    this.className = "";
+  };
+  // events attached to the drag wrappers
+  var onDrop = function (e) {
+    // getting the box id from the dataTransfer object
+    var BoxId = e.dataTransfer.getData("Text"),
+        // detecting the current box
+        Box = document.getElementById(BoxId);
+    // appending the box into the drop wrapper
+    this.appendChild(Box);
+
+    // preventing the event bubbling
+    e.stopPropagation();
+    // resetting the default browser behaviors
+    e.preventDefault();
+  };
+  var onDragOver = function (e) {
+    // without this the drop event is not fired
+    e.preventDefault();
+  };
+  
+  // setting the listeners looping to the blocks array found by the querySelectorAll
+  for (var i = 0; i < blocks.length; i ++) {
+    var block = blocks[i]
+    block.addEventListener("dragstart",onDragStart,false);
+    block.addEventListener("dragend",onDragEnd,false);
+  }
+  // setting the listeners to the containers
+  dropper.addEventListener('drop', onDrop, false);
+  dropper.addEventListener('dragover', onDragOver, false);
+  wrapper.addEventListener('drop', onDrop, false);
+  wrapper.addEventListener('dragover', onDragOver, false);
+  </pre></div>
+  <script>
+  // detecting the elements inside the DOM
+  var blocks = document.querySelectorAll(".wrapper a"),
+      wrapper = document.querySelector(".wrapper")
+      dropper = document.querySelector(".dropper");
+
+  // events attached to the blocks
+  var onDragStart = function (e) {
+    // setting the drag operation
+    e.dataTransfer.effectAllowed = 'move'; // here we are setting that the drag data will be moved
+    e.dataTransfer.setData("Text", this.id); // the drag data is just the id of the element
+    //e.dataTransfer.setDragImage(imageObject,0,0); // you can set also an image placeholder during the drag
+
+    // adding the dragging class to the current block
+    this.className = "dragging";
+  };
+  var onDragEnd = function (e) {
+    // removing the class of the block dragged
+    this.className = "";
+  };
+  // events attached to the drag wrappers
+  var onDrop = function (e) {
+    // getting the box id from the dataTransfer object
+    var BoxId = e.dataTransfer.getData("Text"),
+        // detecting the current box
+        Box = document.getElementById(BoxId);
+    // appending the box into the drop wrapper
+    this.appendChild(Box);
+
+    // preventing the event bubbling
+    e.stopPropagation();
+    // resetting the default browser behaviors
+    e.preventDefault();
+  };
+  var onDragOver = function (e) {
+    // without this the drop event is not fired
+    e.preventDefault();
+  };
+  
+  // setting the listeners looping to the blocks array found by the querySelectorAll
+  for (var i = 0; i < blocks.length; i ++) {
+    var block = blocks[i]
+    block.addEventListener("dragstart",onDragStart,false);
+    block.addEventListener("dragend",onDragEnd,false);
+  }
+  // setting the listeners to the containers
+  dropper.addEventListener('drop', onDrop, false);
+  dropper.addEventListener('dragover', onDragOver, false);
+  wrapper.addEventListener('drop', onDrop, false);
+  wrapper.addEventListener('dragover', onDragOver, false);
+  
+  </script>
+  <!-- these scripts are not needed, it is used just to highlight the code in the page -->
+  <script src="../assets/js/prettify.js"></script>
+  <script>window.prettyPrint && prettyPrint()</script>
+</body>
+</html>

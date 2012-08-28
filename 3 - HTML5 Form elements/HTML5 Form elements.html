@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Html5 form elements</title>
+  <meta name="author" content="Gianluca Guarini">
+  <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
+  <!-- I am using twitter bootstrap to style the form inputs but you can remove this line to see how they look unstyled -->
+  <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+
+  <!--
+  *
+  * This page was made just for didactic purpose by Gianluca Guarini
+  * It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
+  *
+  *
+  -->
+  <style>
+  /* Custom placeholder attributes */
+  .CustomPlaceholder::-webkit-input-placeholder  { /* webkit browsers */
+    color:#f00; 
+  }
+  .CustomPlaceholder:-moz-placeholder { /* Firefox */
+    color:#f00; 
+  }
+  /* END Custom placeholder attributes */
+
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>List of the new HTML5 form features</h1>
+    <form>
+      <h2>New attributes</h2>
+      <fieldset class="form-actions">
+        <h3>Placeholder</h3>
+        <label>
+          Name
+          <input placeholder="Clark" type="text" />
+        </label>
+        <label>
+          Surname
+          <input placeholder="Kent" type="text" />
+        </label>
+      </fieldset>
+
+      <fieldset class="form-actions">
+        <h3>Placeholder Styled with CSS3</h3>
+        <label>
+          Name
+          <input class="CustomPlaceholder" placeholder="Clark" type="text" />
+        </label>
+        <label>
+          Surname
+          <input class="CustomPlaceholder" placeholder="Kent" type="text" />
+        </label>
+      </fieldset>
+      <fieldset class="form-actions">
+        <h3>Autofocus</h3>
+        <label>
+          Search here your Friends
+          <input autofocus type="text" placeholder="Mike, Tom..." />
+        </label>
+      </fieldset>
+      <fieldset class="form-actions">
+        <h3>Required</h3>
+        <label>
+          This field is required*
+          <input required type="text" placeholder="I need a value*" />
+        </label>
+      </fieldset>
+      <fieldset class="form-actions">
+        <h3>Pattern</h3>
+        <label>
+          At least a number is required
+          <input required type="text" pattern="[0-9].*" placeholder="1234..." />
+        </label>
+      </fieldset>
+
+      <input class="btn btn-primary" type="submit" />
+    </form>
+    <div class="clearfix"></div>
+    <form>
+      <h2>New Input types</h2>
+      <fieldset class="form-actions">
+        <h3>Number and Tel</h3>
+        <label>
+          Insert a number
+          <input placeholder="12345..." type="number" />
+        </label>
+        <label>
+          Telephone
+          <input placeholder="003 123 45 56" type="tel" />
+        </label>
+      </fieldset>
+      <fieldset class="form-actions">
+        <h3>Email and Url</h3>
+        <label>
+          Email Adress
+          <input type="email" placeholder="example@mail.com" />
+        </label>
+        <label>
+          Website url
+          <input type="url" placeholder="http://example.com" />
+        </label>
+      </fieldset>
+      <fieldset class="form-actions">
+        <h3>Search</h3>
+        <label>
+          Search something
+          <input  type="search" placeholder="The meaning of life.." results="15" />
+        </label>
+      </fieldset>
+      <fieldset class="form-actions">
+        <h3>Other input types</h3>
+        <label>
+          What is your favourite color
+          <input  type="color" />
+        </label>
+        <label>
+          Date
+          <input  type="date" />
+        </label>
+        <label>
+          Month
+          <input  type="month" />
+        </label>
+        <label>
+          Week
+          <input  type="week" />
+        </label>
+        <label>
+          Time
+          <input  type="time" />
+        </label>
+        <label>
+          Range
+          <input  type="range" step="3" max="18" min="3" />
+        </label>
+      </fieldset>
+      <input class="btn btn-primary" type="submit" />
+    </form>
+  </div>
+  <!-- these scripts are not needed, it is used just to highlight the code in the page -->
+  <script src="../assets/js/prettify.js"></script>
+  <script>window.prettyPrint && prettyPrint()</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSS3 Transition Examples</title>
+  <meta name="author" content="Gianluca Guarini">
+  <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
+  <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+  <!--
+  *
+  * This page was made just for didactic purpose by Gianluca Guarini
+  * It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
+  *
+  *
+  -->
+  <style>
+  /* COMMON */
+
+  .example a, .example input {
+    margin:20px 0;
+    display:block;
+    text-decoration:none;
+  }
+  /* EXAMPLE 1 */
+.example1 {
+  font-size:16px;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  transition-delay: 0;
+  /* Firefox 4 */
+  -moz-transition-property:all;
+  -moz-transition-duration:1s;
+  -moz-transition-timing-function:linear;
+  -moz-transition-delay:0;
+  /* Safari and Chrome */
+  -webkit-transition-property:all;
+  -webkit-transition-duration:1s;
+  -webkit-transition-timing-function:linear;
+  -webkit-transition-delay:0;
+  /* Opera */
+  -o-transition-property:all;
+  -o-transition-duration:1s;
+  -o-transition-timing-function:linear;
+  -o-transition-delay:0;
+}
+.example1:hover {
+  font-size:70px; 
+}
+/* EXAMPLE 2 */
+.example2 {
+  font-size:16px;
+  color:red;
+  -moz-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+      -o-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+  letter-spacing: 3px;
+}
+.example2:hover {
+  color:green;
+  letter-spacing: 50px;
+}
+/* EXAMPLE 3 */
+input.example3 {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+     -o-border-radius: 3px;
+          border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow ease-in-out 0.7s;
+     -moz-transition: border linear 0.2s, box-shadow ease-in-out 0.7s;
+      -ms-transition: border linear 0.2s, box-shadow ease-in-out 0.7s;
+       -o-transition: border linear 0.2s, box-shadow ease-in-out 0.7s;
+          transition: border linear 0.2s, box-shadow ease-in-out 0.7s;
+}
+
+input.example3:focus {
+  border-color: red;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 255, 0, 0.075), 0 0 8px red;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 255, 0, 0.075), 0 0 8px red;
+      -o-box-shadow: inset 0 1px 1px rgba(0, 255, 0, 0.075), 0 0 8px red;
+        box-shadow: inset 0 1px 1px rgba(0, 255, 0, 0.075), 0 0 8px red;
+}
+/* EXAMPLE 4 */
+.example4 {
+  width:300px;
+  height:300px;
+
+  background: url("../assets/img/img.jpg") no-repeat center center;
+  background-size:600px;
+  -webkit-border-radius: 300px;
+     -moz-border-radius: 300px;
+      -o-border-radius: 300px;
+        border-radius: 300px;
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.775);
+     -moz-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.775);
+      -o-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.775);
+          box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.775);
+  -webkit-transition: all 500ms cubic-bezier(0.600, 0, 0.735, 0.045); /* older webkit */
+  -webkit-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+   -moz-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    -ms-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+     -o-transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+        transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+}
+.example4:hover {
+  background-size:350px;
+  
+}
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="example">
+      <h1>CSS3 Transition over example 1</h1>
+      <a href="#" class="example1">Test</a>
+      <pre class="prettyprint linenums">
+    .example1 {
+      font-size:16px;
+      transition-property: all;
+      transition-duration: 1s;
+      transition-timing-function: linear;
+      transition-delay: 0;
+    }
+    .example1:hover {
+      font-size:70px; 
+    }
+    </pre>
+    </div>
+    <div class="example">
+      <h1>CSS3 Transition over example 2</h1>
+      <a href="#" class="example2">Test</a>
+      <pre class="prettyprint linenums">
+    .example2 {
+      font-size:16px;
+      color:red;
+      transition: all 0.3s linear;
+      letter-spacing: 3px;
+    }
+    .example2:hover {
+      color:green;
+      letter-spacing: 50px;
+    }
+   </pre>
+
+    </div>
+    <div class="example">
+      <h1>CSS3 Transition input field focus example 3</h1>
+      <input class="example3" type="text" />
+      <pre class="prettyprint linenums">
+    input.example3 {
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      transition: border linear 0.2s, box-shadow ease-in-out 0.7s;
+    }
+    input.example3:focus {
+      border-color: red;
+      box-shadow: inset 0 1px 1px rgba(0, 255, 0, 0.075), 0 0 8px red;
+    }
+    </pre>
+    </div>
+    <div class="example">
+      <h1>CSS3 Transition Background image example 4</h1>
+      <a href="#" class="example4"></a>
+      <pre class="prettyprint linenums">
+    .example4 {
+      width:300px;
+      height:300px;
+      background: url("img.jpg") no-repeat center center;
+      background-size:600px;
+      border-radius: 300px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.775);
+      transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    }
+    .example4:hover {
+      background-size:350px;
+    }
+    </pre>
+    </div>
+  </div>
+  <!-- these scripts are not needed, it is used just to highlight the code in the page -->
+  <script src="../assets/js/prettify.js"></script>
+  <script>window.prettyPrint && prettyPrint()</script>
+</body>
+</html>

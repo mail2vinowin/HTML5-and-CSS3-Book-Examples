@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSS3 Transition Examples</title>
+  <meta name="author" content="Gianluca Guarini">
+  <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
+ <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+
+  <!--
+  *
+  * This page was made just for didactic purpose by Gianluca Guarini
+  * It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
+  *
+  *
+  -->
+  <style>
+  /* COMMON */
+  body {
+    overflow:hidden;
+    background:black;
+  }
+  h1 {
+    margin:25% 0 0 0;
+    width:100%;
+    text-align: center;
+    color:#222;
+    position:relative;
+    z-index:1;
+    font-size:50px;
+    text-shadow:1px 1px 1px #999;
+    }
+  ul li {
+    list-style:none;
+    position:absolute;
+    -moz-transition: all 1s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    -webkit-transition: all 1s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+      -o-transition: all 1s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+        transition: all 1s cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    border-radius:300px;
+    border:2px solid #ccc;
+    box-shadow:0 0 7px #ccc;
+    background:rgba(255,255,255,0.95);
+  }
+  </style>
+</head>
+
+<body>
+
+  <h1>Click anywhere or resize the window</h1>
+  <ul>
+  </ul>
+  <script>
+  // Global Vars
+  var ul = document.querySelector("ul"),
+      list = document.createDocumentFragment(),
+      w = window,
+      particles = 99;
+
+  // this function changes the inline style of the argument passed
+  var setElementStyle = function (elm) {
+    // setting the syle of the element randomly (note the use of the double tilde to round the numbers)
+    var size      = ~~(Math.random() * 300),
+        position  = {
+          x: ~~(Math.random() * w.innerWidth) - (size / 2),
+          y: ~~(Math.random() * w.innerHeight) - (size / 2),
+        };
+    elm.style.width = elm.style.height = size + "px";
+    elm.style.top   = position.y + "px";
+    elm.style.left  = position.x + "px";
+
+    return elm;
+  };
+  // changing the inline style of all the li in this page
+  var moveElements = function () {
+    var liArray = document.querySelectorAll("li"),
+        i = liArray.length;
+
+    while (i --) {
+      setElementStyle(liArray[i]);
+    }
+  };
+  // this function initializes the example appending the particles to the DOM
+  var init = function (){
+    while (particles --) {
+      var newLi = document.createElement("li");
+      list.appendChild(setElementStyle(newLi));
+    }
+    ul.appendChild(list);
+  };
+  // let's rock this party
+  init();
+
+  // Event Handlers
+  w.addEventListener("resize",moveElements);
+  w.addEventListener("click",moveElements);
+  w.addEventListener("touchstart",moveElements);
+  </script>
+  <!-- these scripts are not needed, it is used just to highlight the code in the page -->
+  <script src="../assets/js/prettify.js"></script>
+  <script>window.prettyPrint && prettyPrint()</script>
+</body>
+</html>

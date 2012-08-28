@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Custom html5 video controls</title>
+  <meta name="author" content="Gianluca Guarini">
+  <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
+  <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+
+  <!--
+  *
+  * This page was made just for didactic purpose by Gianluca Guarini
+  * It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
+  *
+  * The following examples use the source files from these website:
+  * http://camendesign.com/code/video_for_everybody/test.html
+  * http://jplayer.org/
+  *
+  -->
+  <style>
+   .container-fluid {
+    width:600px;
+    margin:0 auto;
+   }
+    video {
+      box-shadow:0 0 15px #333;
+      border-radius:10px;
+    }
+    .ProgressBar {
+      width:100%;
+      height:30px;
+      margin:10px 0;
+      background: #3d3d3d;
+      box-shadow:0 0 10px #000 inset;
+      border-radius:30px;
+      overflow: hidden;
+    }
+    .ProgressBar span {
+      display: block;
+      height:30px;
+      width:0;
+      border-radius:30px;
+      background: #0088CC;
+    }
+    .Volume {
+      float:right;
+      width:200px;
+      border-radius:5px;
+      background: #fff;
+      box-shadow:0 0 2px #999 inset;
+      height:10px;
+      position:relative;
+      cursor:pointer;
+    }
+    .Volume span {
+      width:10px;
+      height:10px;
+      border-radius: 10px;
+      display: block;
+      position: absolute;
+      margin-left:-5px;
+      left:0;
+      top:0;
+      background: #0088CC;
+    }
+    .Volume div {
+      width:0;
+      height:10px;
+      border-radius: 10px;
+      background: #3d3d3d;
+
+    }
+    .Volume div , .Volume span {
+      transition: all 0.1s ease-in-out;
+      -moz-transition: all 0.1s ease-in-out; /* Firefox 4+ */
+      -webkit-transition: all 0.1s ease-in-out; /* Safari and Chrome */
+      -o-transition: all 0.1s ease-in-out; /* Opera */
+    }
+    .Volume div,
+    .ProgressBar span {
+      box-shadow:0 0 10px #000 inset;
+    }
+    a, a:hover {
+      text-decoration: none;
+    }
+    a.Play  {
+      font-size:20px;
+      text-decoration:none;
+    }
+    .Pause {
+      font-size:28px;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>Custom video player example</h1>
+    <video width="600">
+      <!-- Safari / iOS, IE9 -->
+      <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4">
+      <!-- Chrome10+, Ffx4+, Opera10.6+ -->
+      <source src="http://clips.vorwaerts-gmbh.de/VfE.webm">
+      <!-- Firefox3.6+ / Opera 10.5+ -->
+      <source src="http://clips.vorwaerts-gmbh.de/VfE.ogv"></video>
+    <div title="video progress bar" class="ProgressBar">
+      <span></span>
+    </div>
+    <a title="Play video" href="#" class="Play">►</a>
+    <a title="Stop video" href="#" class="Pause">■</a>
+    <div class="Volume" title="Volume bar">
+      <div></div>
+      <span></span>
+    </div>
+  </div>
+</body>
+  <script>
+// find the html tags
+var mouseDown   = false, // this var is used to detect when we can update the volume bar
+    Video       = document.querySelector('video'),
+    Play        = document.querySelector('.Play'),
+    ProgressBar = document.querySelector('.ProgressBar span'),
+    Volume      = document.querySelector('.Volume'),
+    VolumeDrag  = document.querySelector('.Volume span'),
+    VolumeStat  = document.querySelector('.Volume div'),
+    Pause       = document.querySelector('.Pause');
+
+
+var play = function () {
+  Video.play();
+};
+
+var pause = function () {
+  Video.pause();
+};
+
+var updateProgressBar = function () {
+    var percentage = (Video.currentTime / Video.duration) * 100;
+    ProgressBar.style.width = percentage + "%";
+};
+var updateVolume = function ( volumeValue ) {
+  VolumeDrag.style.left   = volumeValue * 100 + "%";
+  VolumeStat.style.width  = volumeValue * 100 +  "%";
+
+  Video.volume = volumeValue;
+};
+
+var setVolume = function ( e ) {
+
+  e.preventDefault();
+
+  if(mouseDown) {
+    var mouseX = e.pageX,
+        realX  = e.pageX - Volume.offsetLeft,
+        volume = ((100 / Volume.offsetWidth) * realX) / 100;
+
+        if (volume < 1 && volume > 0) {
+          updateVolume( volume );
+        }
+  }
+};
+
+updateVolume ( 0.5 );
+
+Play.addEventListener('click', play, false);
+Pause.addEventListener('click', pause, false);
+Video.addEventListener('timeupdate',updateProgressBar, false);
+Volume.addEventListener('mousedown', function () {mouseDown = true}, false);
+Volume.addEventListener('click', function (e) {mouseDown = true; setVolume(e);mouseDown = false;}, false);
+window.addEventListener('mouseup', function () {mouseDown = false}, false);
+window.addEventListener('mousemove', setVolume, false);
+</script>
+</html>

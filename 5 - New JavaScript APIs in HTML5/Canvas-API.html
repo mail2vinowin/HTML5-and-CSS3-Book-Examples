@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Canvas API</title>
+  <meta name="author" content="Gianluca Guarini">
+  <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
+  <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+
+  <!--
+  *
+  * This page was made just for didactic purpose by Gianluca Guarini
+  * It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
+  *
+  *
+  -->
+</head>
+
+<body>
+<div class="container-fluid">
+  <h1>Draw a pink square</h1>
+  <canvas id="example1" width="200" height="200"></canvas>
+  <pre class="prettyprint linenums">
+    var canvas1 = document.querySelector("#example1"),
+      c1 = canvas1.getContext('2d');
+      c1.fillStyle = "pink" ;
+      c1.fillRect(50, 50, 100,100);
+ </pre>
+  <script>
+  var canvas1 = document.querySelector("#example1"),
+      c1 = canvas1.getContext('2d');
+      c1.fillStyle = "pink" ;
+      c1.fillRect(50, 50, 100,100);
+</script>
+  <h1>Simple canvas animation</h1>
+  <canvas id="example2" width="200" height="200"></canvas>
+  <pre class="prettyprint linenums">
+  // every browser vendor uses a prefix for this experimental API so we can reset this behavior 
+  window.requestAnimationFrame = window.requestAnimationFrame || // standard
+  window.mozRequestAnimationFrame || // Firefox
+  window.webkitRequestAnimationFrame || // Chrome and Safari
+  window.msRequestAnimationFrame; // IE10
+
+  var canvas2 = document.querySelector("#example2"),
+      c2 = canvas2.getContext('2d'),
+      canvas2Width = canvas2.width,
+      canvas2Height = canvas2.height,
+      // starting the rotation from 0 degrees
+      deg = 0;
+
+  var loop = function () {
+    // saving the current context position
+    c2.save();
+    // clearing the context resetting it to a blank square 
+    c2.clearRect(0,0,canvas2Width,canvas2Width);
+
+    // moving the center of the rotation to the center of the canvas
+    c2.translate(canvas2Width/2, canvas2Height/2);
+    // rotating one degree the context
+    c2.rotate(deg * (Math.PI/180));
+    
+    // moving the coordinates of the green square to the center of the canvas
+    c2.fillStyle = "green" ;
+    c2.fillRect(-50, -50, 100,100);
+    // restoring the context to its initial position
+    c2.restore();
+    // increasing the degrees
+    deg ++;
+    // creating the loop
+    requestAnimationFrame(loop);
+  };
+  // initializing the loop
+  loop();
+ </pre>
+</div>
+  <script>
+  // every browser vendor uses a prefix for this experimental API so we can reset this behavior 
+  window.requestAnimationFrame = window.requestAnimationFrame || // standard
+  window.mozRequestAnimationFrame || // Firefox
+  window.webkitRequestAnimationFrame || // Chrome and Safari
+  window.msRequestAnimationFrame; // IE10
+
+  var canvas2 = document.querySelector("#example2"),
+      c2 = canvas2.getContext('2d'),
+      canvas2Width = canvas2.width,
+      canvas2Height = canvas2.height,
+      // starting the rotation from 0 degrees
+      deg = 0;
+
+  var loop = function () {
+    // saving the current context position
+    c2.save();
+
+    // clearing the context resetting it to a blank square 
+    c2.clearRect(0,0,canvas2Width,canvas2Width);
+
+    // moving the center of the rotation to the center of the canvas
+    c2.translate(canvas2Width/2, canvas2Height/2);
+    // rotating one degree the context
+    c2.rotate(deg * (Math.PI/180));
+    
+    // moving the coordinates of the green square to the center of the canvas
+    c2.fillStyle = "green" ;
+    c2.fillRect(-50, -50, 100,100);
+    // restoring the context to its initial position
+    c2.restore();
+    // increasing the degrees
+    deg ++;
+    // creating the loop
+    requestAnimationFrame(loop);
+  };
+  // initializing the loop
+  loop();
+</script>
+
+  <!-- these scripts are not needed, they are used just to highlight the code in the page -->
+  <script src="../assets/js/prettify.js"></script>
+  <script>window.prettyPrint && prettyPrint()</script>
+</body>
+</html>
