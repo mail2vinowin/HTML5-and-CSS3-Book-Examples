@@ -12,20 +12,22 @@
 	* This template was made just for didactic purpose by Gianluca Guarini
 	* It is opensource under MIT license http://www.opensource.org/licenses/mit-license.php
 	*
+	* More infos about ARIA attributes here: www.w3.org/WAI/PF/aria/roles
+	* More infos about HTML5 microdata here: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=176035
 	*
 	-->
 </head>
-
-<body >
+<!-- Using the HTML5 microdata with the Organization vocabulary -->
+<body itemtype="http://www.data-vocabulary.org/Organization">
 	<!-- The HEADER should wrap the introductive contents of our web site -->
 	<header>
 		<!-- 
 			The H1 could be a logo or a text but it should represent completely the content of our website 
-
+			the span is used to set the the name microdata attribute from the Organization vocabulary
 		-->
-		<h1>Company X Website</h1>
+		<h1><span itemprop="name">Company X</span> Website</h1>
 		<!-- The NAV tag contains the main navigation links of our site -->
-		<nav>
+		<nav role="navigation">
 			<!-- Even if here it could be used also another H1 we prefer to follow the right headings order -->
 			<h2>Main menu</h2>
 			<ul>
@@ -37,16 +39,16 @@
 			</ul>
 		</nav>
 	</header>
-
-	<div>
+	<!-- The role=main indicates that the contents wrapped here represent the main contens of the site -->
+	<div role="main">
 		<!-- This H1 is at the same level of the first H1 beacause the parent DIV is not an HTML5 sectioning content -->
 		<h1>Main contents</h1>
 		<!-- Using the ASIDE we define the marginal infos related to the main contents -->
-		<aside>
+		<aside role="complementary">
 			<h2>Related contents</h2>
 			<!-- This FIGURE could contain a sponsor image -->
 			<figure>
-				<a href="#" rel="nofollow"><img src="http://placehold.it/250x250" alt="sponsor1" title="Main sponsor" /></a>
+				<a role="banner" href="#" rel="nofollow"><img src="http://placehold.it/250x250" alt="sponsor1" title="Main sponsor" /></a>
 				<!-- The FIGCAPTION should contain a complete decription of the media content inside the FIGURE parent wrapper -->
 				<figcaption>
 					<p>The sponsor X is our main business partner</p>
@@ -65,33 +67,33 @@
 			</nav>
 		</aside>
 		<!-- The ARTICLE contains some informations that could be distribute independently from the rest of the site.
-				 
+					Note that here we are overriding the itemtype microdata property setting the Product vocabulary
 		-->
-		<article >
-			<h2>Product X will be released soon!</h2>
-				<img src="http://placehold.it/600x250" alt="Product X" title="Product X Prototype" />
+		<article role="article" itemtype="http://www.data-vocabulary.org/Product">
+			<h2><span itemprop="name">Product X</span> will be released soon!</h2>
+				<img itemprop="image" src="http://placehold.it/600x250" alt="Product X" title="Product X Prototype" />
 				<p>This product is amazing and will be the available soon ... <a href="#">Read more</a></p>
 			<!-- The FOOTER element (as the HEADER element) could appear often inside a page whether we need to wrap copyright infos -->
 			<footer>
 				<time datetime="2012-05-03">May 2012</time>
 				<small>
-					technology
-					robot
-					metal things
+					<span itemprop="category">technology</span>
+					<span itemprop="category">robot</span>
+					<span itemprop="category">metal things</span>
 				</small>
 			</footer>
 		</article>
 		<!-- This is just a clone of the node above -->
-		<article>
-			<h2>Product Y will be released soon!</h2>
-				<img src="http://placehold.it/600x250" alt="Product X" title="Product X Prototype" />
+		<article  role="article" itemtype="http://www.data-vocabulary.org/Product">
+			<h2><span itemprop="name">Product Y</span> will be released soon!</h2>
+				<img itemprop="image" src="http://placehold.it/600x250" alt="Product X" title="Product X Prototype" />
 				<p>This product is amazing and will be the available soon ... <a href="#">Read more</a></p>
 			<footer>
 				<time datetime="2012-05-03">May 2012</time>
 				<small>
-					technology
-					robot
-					metal things
+					<span itemprop="category">technology</span>
+					<span itemprop="category">robot</span>
+					<span itemprop="category">metal things</span>
 				</small>
 			</footer>
 		</article>
@@ -103,33 +105,34 @@
 			<article>
 				<h3>I like the product x</h3>
 				<p>This product is amazing!</p>
-				<footer >
+				<!-- overriding the the itemtype microdata property setting the Person vocabulary just for the FOOTER contents -->
+				<footer itemtype="http://www.data-vocabulary.org/Person">
 					<dl>
-						<dt>Name:</dt><dd >Mike</dd>
-						<dt>Title:</dt><dd >Web Developer</dd>
-						<dt>Website:</dt><dd><a href="#" rel="external"  >www.example.com</a></dd>
+						<dt>Name:</dt><dd itemprop="name">Mike</dd>
+						<dt>Title:</dt><dd itemprop="title">Web Developer</dd>
+						<dt>Website:</dt><dd><a href="#" rel="external" itemprop="url" >www.example.com</a></dd>
 					</dl>
 				</footer>
 			</article>
 			<article>
 				<h3>I don't like the product x</h3>
 				<p>This product sucks!</p>
-				<footer >
+				<footer itemtype="http://www.data-vocabulary.org/Person">
 					<dl>
-						<dt>Name:</dt><dd >Rob</dd>
-						<dt>Title:</dt><dd >Web Developer</dd>
-						<dt>Website:</dt><dd><a href="#" rel="external"  >www.example.com</a></dd>
+						<dt>Name:</dt><dd itemprop="name">Rob</dd>
+						<dt>Title:</dt><dd itemprop="title">Web Developer</dd>
+						<dt>Website:</dt><dd><a href="#" rel="external" itemprop="url" >www.example.com</a></dd>
 					</dl>
 				</footer>
 				<!-- We can nest the answers inside other ARTICLE elements but remembering always to reduce the headings level -->
 				<article>
 					<h4>You are wrong</h4>
 					<p>This product rocks!</p>
-					<footer >
+					<footer itemtype="http://www.data-vocabulary.org/Person">
 						<dl>
-							<dt>Name:</dt><dd >Daniel</dd>
-							<dt>Title:</dt><dd >Web Developer</dd>
-							<dt>Website:</dt><dd><a href="#" rel="external"  >www.example.com</a></dd>
+							<dt>Name:</dt><dd itemprop="name">Daniel</dd>
+							<dt>Title:</dt><dd itemprop="title">Web Developer</dd>
+							<dt>Website:</dt><dd><a href="#" rel="external" itemprop="url" >www.example.com</a></dd>
 						</dl>
 					</footer>
 				</article>
@@ -137,15 +140,15 @@
 		</section>
 	</div>
 	<!-- This FOOTER has to contain the copyright infos of the parent element that is the BODY -->
-	<footer>
+	<footer role="contentinfo">
 		<small>
 			<span>&copy; 2012 Company x </span>
-			<span >
-				Country x,
-				Region x,
-				Locality x -
-				Street x
-				XXXXXX
+			<span itemprop="address">
+				<span itemprop="country-name">Country x,</span>
+				<span itemprop="region">Region x,</span>
+				<span itemprop="locality">Locality x -</span>
+				<span itemprop="street-address">Street x</span>
+				<span itemprop="postal-cod">XXXXXX</span>
 			</span>
 		</small>
 	</footer>
