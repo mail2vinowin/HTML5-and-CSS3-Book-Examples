@@ -5,7 +5,7 @@
   <title>CSS3 Transition Examples</title>
   <meta name="author" content="Gianluca Guarini">
   <link type="text/plain" rel="author" href="http://www.gianlucaguarini.com/humans.txt" />
- <link type="text/css" rel="stylesheet" href="../assets/css/twitter-bootstrap.css" />
+  <link type="text/css" rel="stylesheet" href="twitter-bootstrap.css" />
 
   <!--
   *
@@ -16,20 +16,13 @@
   -->
   <style>
   /* COMMON */
-  body {
+  html {
     overflow:hidden;
-    background:black;
+    background:-webkit-gradient(radial, 50% 50%, 0, 50% 50%, 960, from(#C0FCFB), to(#999)) no-repeat #999;
+    background: -moz-radial-gradient(50% 50% 0deg,ellipse farthest-corner, #C0FCFB, #999, #999 170%);
+    background: -o-radial-gradient(50% 50%, #C0FCFB, #999);
+    height:100%;
   }
-  h1 {
-    margin:25% 0 0 0;
-    width:100%;
-    text-align: center;
-    color:#222;
-    position:relative;
-    z-index:1;
-    font-size:50px;
-    text-shadow:1px 1px 1px #999;
-    }
   ul li {
     list-style:none;
     position:absolute;
@@ -38,15 +31,36 @@
       -o-transition: all 1s cubic-bezier(0.600, -0.280, 0.735, 0.045);
         transition: all 1s cubic-bezier(0.600, -0.280, 0.735, 0.045);
     border-radius:300px;
-    border:2px solid #ccc;
-    box-shadow:0 0 7px #ccc;
-    background:rgba(255,255,255,0.95);
+    border:7px solid rgba(240,232,235, 0.1);
+    background:rgba(255,255,255,0.50);
+ 
   }
-  </style>
+  @-webkit-keyframes pulse {
+    0% { -webkit-transform: scale(1); }  
+  50% { -webkit-transform: scale(1.1); }
+    100% { -webkit-transform: scale(1); }
+  }
+  @-moz-keyframes pulse {
+    0% { -moz-transform: scale(1); }  
+  50% { -moz-transform: scale(1.1); }
+    100% { -moz-transform: scale(1); }
+  }
+  @-o-keyframes pulse {
+    0% { -o-transform: scale(1); }  
+  50% { -o-transform: scale(1.1); }
+    100% { -o-transform: scale(1); }
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); }  
+  50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+
+</style>
 </head>
 
 <body>
-
   <h1>Click anywhere or resize the window</h1>
   <ul>
   </ul>
@@ -55,12 +69,23 @@
   var ul = document.querySelector("ul"),
       list = document.createDocumentFragment(),
       w = window,
-      particles = 99;
+      particles = 60,
+      domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+      animationstring = 'animation',
+      pfx = '';
 
+  var getAnimationString = function () {
+    for( var i = 0; i < domPrefixes.length; i++ ) {
+        if( ul.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
+          pfx = domPrefixes[ i ];
+          return animationstring = pfx + 'Animation';
+        }
+      }
+  };
   // this function changes the inline style of the argument passed
   var setElementStyle = function (elm) {
     // setting the syle of the element randomly (note the use of the double tilde to round the numbers)
-    var size      = ~~(Math.random() * 300),
+    var size      = ~~(Math.random() * 150),
         position  = {
           x: ~~(Math.random() * w.innerWidth) - (size / 2),
           y: ~~(Math.random() * w.innerHeight) - (size / 2),
@@ -68,6 +93,8 @@
     elm.style.width = elm.style.height = size + "px";
     elm.style.top   = position.y + "px";
     elm.style.left  = position.x + "px";
+    elm.style[getAnimationString()] = "pulse "+ ~~(Math.random() * 3) * 3 + "s infinite";
+    elm.style[pfx+"Transition"] = "all "+ ~~(Math.random() * 3) + 3 +"s cubic-bezier(0.600, -0.280, 0.735, 0.045) "+  ~~(Math.random() *3) + "s";
 
     return elm;
   };
@@ -75,7 +102,6 @@
   var moveElements = function () {
     var liArray = document.querySelectorAll("li"),
         i = liArray.length;
-
     while (i --) {
       setElementStyle(liArray[i]);
     }
@@ -96,8 +122,6 @@
   w.addEventListener("click",moveElements);
   w.addEventListener("touchstart",moveElements);
   </script>
-  <!-- these scripts are not needed, it is used just to highlight the code in the page -->
-  <script src="../assets/js/prettify.js"></script>
-  <script>window.prettyPrint && prettyPrint()</script>
+
 </body>
 </html>
