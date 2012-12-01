@@ -76,11 +76,16 @@
 			<!-- The FOOTER element (as the HEADER element) could appear often inside a page whether we need to wrap copyright infos -->
 			<footer>
 				<time datetime="2012-05-03">May 2012</time>
-				<small>
-					<span itemprop="category">technology</span>
-					<span itemprop="category">robot</span>
-					<span itemprop="category">metal things</span>
-				</small>
+				<dl>
+					<dt>Author:</dt> 
+					<dd>Robert Smith</dd>
+					<dt>Tags:</dt>
+					<dd>
+						<span itemprop="category">technology</span>
+						<span itemprop="category">robot</span>
+						<span itemprop="category">metal things</span>
+					</dd>
+				</dl>
 			</footer>
 		</article>
 		<!-- This is just a clone of the node above -->
@@ -90,14 +95,20 @@
 				<p>This product is amazing and will be the available soon ... <a href="#">Read more</a></p>
 			<footer>
 				<time datetime="2012-05-03">May 2012</time>
-				<small>
-					<span itemprop="category">technology</span>
-					<span itemprop="category">robot</span>
-					<span itemprop="category">metal things</span>
-				</small>
+				<dl>
+					<dt>Author:</dt> 
+					<dd>Robert Smith</dd>
+					<dt>Tags:</dt>
+					<dd>
+						<span itemprop="category">technology</span>
+						<span itemprop="category">robot</span>
+						<span itemprop="category">metal things</span>
+					</dd>
+				</dl>
+					
 			</footer>
 		</article>
-		<!-- Note that this SECTION is used to contain the users comments and is indipendent from the rest of the page
+		<!-- Note that this SECTION is used to contain the users comments and is independent from the rest of the page
 					you can use an ARTICLE inside a SECTION and vice versa 
 		-->
 		<section>
@@ -139,7 +150,7 @@
 			</article>
 		</section>
 	</div>
-	<!-- This FOOTER has to contain the copyright infos of the parent element that is the BODY -->
+	<!-- This FOOTER must contain the copyright infos of the parent element that is the BODY -->
 	<footer role="contentinfo">
 		<small>
 			<span>&copy; 2012 Company x </span>
